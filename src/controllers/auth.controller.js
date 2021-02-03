@@ -7,7 +7,7 @@ const jwtService = require('./../services/jwt.service');
 const User = require('./../models/User');
 
 // @DESC    SIGN UP USER
-// @ROUTE   /api/auth/signUp
+// @ROUTE   POST /api/auth/signUp
 // @ACCESS  PUBLIC
 exports.signUp = asyncHandler(async (req, res, next) => {
     const { username, password } = req.body;
@@ -37,7 +37,7 @@ exports.signUp = asyncHandler(async (req, res, next) => {
 });
 
 // @DESC    LOGIN USER
-// @ROUTE   /api/auth/logIn
+// @ROUTE   POST /api/auth/logIn
 // @ACCESS  PUBLIC
 exports.logIn = asyncHandler(async (req, res, next) => {
     const { username, password } = req.body;

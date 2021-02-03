@@ -1,16 +1,14 @@
 const request = require('supertest');
 const { MongoMemoryServer } = require('mongodb-memory-server');
 const mongoose = require('mongoose');
+const { ROUTES } = require('./../configs/constants');
 const app = require('./../app');
 
 let mongo = null;
 
-global.prefix = '/api';
-global.authEndPoint = `${global.prefix}/auth`;
-global.movieEndPoint = `${global.prefix}/movie`;
-global.signUpEndPoint = `${global.authEndPoint}/signUp`
-global.loginEndPoint = `${global.authEndPoint}/logIn`;
-global.shareEndPoint = `${global.movieEndPoint}/share`;
+global.signUpEndPoint = ROUTES.AUTH.PREFIX + ROUTES.AUTH.SIGN_UP;
+global.loginEndPoint = ROUTES.AUTH.PREFIX + ROUTES.AUTH.LOGIN;
+global.shareEndPoint = ROUTES.MOVIE.PREFIX + ROUTES.MOVIE.SHARE;
 
 // Run before all test code 
 beforeAll(async () => {
