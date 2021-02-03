@@ -1,9 +1,7 @@
 const request = require('supertest');
 const app = require('./../../app');
 
-const prefix = `${global.prefix}/auth`;
-const signUpEndPoint = `${prefix}/signUp`
-const loginEndpoint = `${prefix}/logIn`;
+const { signUpEndPoint, loginEndPoint } = global;
 
 const createUser = () => {
     return request(app)
@@ -85,21 +83,21 @@ describe('Sign Up Feature', () => {
 });
 
 describe('Log In Feature', () => {
-    it(`Has route handler for ${loginEndpoint}`, async () => {
-        const response = await request(app).post(loginEndpoint).send({});
+    it(`Has route handler for ${loginEndPoint}`, async () => {
+        const response = await request(app).post(loginEndPoint).send({});
         expect(response.status).not.toBe(404);
     });
 
     it('Returns error if an invalid username is provided', async () => {
         await request(app)
-            .post(loginEndpoint)
+            .post(loginEndPoint)
             .send({
                 password: "123123"
             })
             .expect(400);
 
         await request(app)
-            .post(loginEndpoint)
+            .post(loginEndPoint)
             .send({
                 username: "",
                 password: "123123"
@@ -107,7 +105,7 @@ describe('Log In Feature', () => {
             .expect(400);
 
         await request(app)
-            .post(loginEndpoint)
+            .post(loginEndPoint)
             .send({
                 username: "!@#$@#$@%^",
                 password: "123123"
@@ -117,14 +115,14 @@ describe('Log In Feature', () => {
 
     it('Returns error if an invalid password is provided', async () => {
         await request(app)
-            .post(loginEndpoint)
+            .post(loginEndPoint)
             .send({
                 username: "yasuo123",
             })
             .expect(400);
 
         await request(app)
-            .post(loginEndpoint)
+            .post(loginEndPoint)
             .send({
                 username: "yasuo123",
                 password: "123"
@@ -132,7 +130,7 @@ describe('Log In Feature', () => {
             .expect(400);
 
         await request(app)
-            .post(loginEndpoint)
+            .post(loginEndPoint)
             .send({
                 username: "yasuo123",
                 password: "0129jr012j12podmpw1ompeo1mwzpokpewkofpwoekf"
@@ -142,7 +140,7 @@ describe('Log In Feature', () => {
 
     it('Returns 400 if user is not signUp', async () => {
         await request(app)
-            .post(loginEndpoint)
+            .post(loginEndPoint)
             .send({
                 username: "yasuo123",
                 password: "123123"
@@ -154,7 +152,7 @@ describe('Log In Feature', () => {
         await createUser();
 
         const response = await request(app)
-            .post(loginEndpoint)
+            .post(loginEndPoint)
             .send({
                 username: "yasuo123",
                 password: "123123"
