@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 
 let mongo = null;
 
+global.prefix = '/api';
+
 // Run before all test code 
 beforeAll(async () => {
     process.env.JWT_KEY = "testtest";
