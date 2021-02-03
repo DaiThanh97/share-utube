@@ -7,6 +7,9 @@ let mongo = null;
 
 // Run before all test code 
 beforeAll(async () => {
+    process.env.JWT_KEY = "testtest";
+    process.env.JWT_EXPIRES = "30m";
+
     mongo = new MongoMemoryServer();
     const mongoURI = await mongo.getUri();
 
