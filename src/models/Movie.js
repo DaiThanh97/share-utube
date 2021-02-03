@@ -1,12 +1,13 @@
 const mongoose = require('mongoose');
 
-const UserSchema = new mongoose.Schema({
-    username: {
+const MovieSchema = new mongoose.Schema({
+    url: {
         type: String,
         required: true
     },
-    password: {
-        type: String,
+    user: {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'User',
         required: true
     }
 }, {
@@ -15,10 +16,9 @@ const UserSchema = new mongoose.Schema({
         transform(doc, ret) {
             ret.id = ret._id;
             delete ret._id;
-            delete ret.password;
             delete ret.__v;
         }
     }
 });
 
-module.exports = mongoose.model("User", UserSchema);
+module.exports = mongoose.model("Movie", MovieSchema);

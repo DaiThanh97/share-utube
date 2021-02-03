@@ -33,5 +33,36 @@ exports.signUp = asyncHandler(async (req, res, next) => {
 
     // Response
     res.status(STATUS_CODE.CREATED)
-        .json(new Response("Sign up successful!", STATUS_CODE.CREATED, { token }));
+        .json(new Response("Sign up successful!", { token }));
+});
+
+// @DESC    LOGIN USER
+// @ROUTE   /api/auth/logIn
+// @ACCESS  PUBLIC
+exports.logIn = asyncHandler(async (req, res, next) => {
+    const { username, password } = req.body;
+    // Check existed user with username
+    let user = await User.findOne({ username });
+    if (!user) {
+        throw new CustomError(STATUS_CODE.BAD_REQUEST, "Invalid credentials!");
+    }
+
+    // Handle logic
+    // Check password
+    const isValidPassword = await passwordService.isEqual(password, user.password);
+    if (!isValidPassword) {
+        throw new CustomError(STATUS_CODE.BAD_REQUEST, "Invalid credentials!");
+    }
+
+    // Generate JWT
+    const token = jwtService.sign({
+        id: user.id
+    });
+
+    // Response
+    res.status(STATUS_CODE.SUCCESS)
+        .json(new Response("Log in successful!", {
+            token,
+            username
+        }));
 });
