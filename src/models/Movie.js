@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { COLLECTION_NAME } = require('./../configs/constants');
 
 const MovieSchema = new mongoose.Schema({
     url: {
@@ -7,11 +8,10 @@ const MovieSchema = new mongoose.Schema({
     },
     user: {
         type: mongoose.SchemaTypes.ObjectId,
-        ref: 'User',
+        ref: COLLECTION_NAME.USER,
         required: true
     }
 }, {
-    timestamps: true,
     toJSON: {
         transform(doc, ret) {
             ret.id = ret._id;
@@ -21,4 +21,4 @@ const MovieSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model("Movie", MovieSchema);
+module.exports = mongoose.model(COLLECTION_NAME.MOVIE, MovieSchema);

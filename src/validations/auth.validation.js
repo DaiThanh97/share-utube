@@ -1,22 +1,14 @@
 const { check } = require('express-validator');
+const { WARNING } = require('./../configs/constants');
 
 const validate = {
-    signUp: [
-        check('username')
-            .isLength({ min: 6, max: 15 }).withMessage("Username must between 6 and 15 characters!")
-            .isAlphanumeric().withMessage("Username must not have special characters!")
-            .trim(),
-        check('password')
-            .isLength({ min: 6, max: 15 }).withMessage("Password must between 6 and 15 characters!")
-            .trim()
-    ],
     logIn: [
         check('username')
-            .isLength({ min: 6, max: 15 }).withMessage("Username must between 6 and 15 characters!")
-            .isAlphanumeric().withMessage("Username must not have special characters!")
+            .isLength({ min: 6, max: 15 }).withMessage(WARNING.USERNAME_LENGTH_STRICT)
+            .isAlphanumeric().withMessage(WARNING.USERNAME_SPECIAL_STRICT)
             .trim(),
         check('password')
-            .isLength({ min: 6, max: 15 }).withMessage("Password must between 6 and 15 characters!")
+            .isLength({ min: 6, max: 15 }).withMessage(WARNING.PASSWORD_LENGTH_STRICT)
             .trim()
     ],
 };

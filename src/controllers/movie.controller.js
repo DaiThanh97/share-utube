@@ -1,5 +1,5 @@
 const Response = require('./../classes/Response');
-const { STATUS_CODE } = require('../configs/constants');
+const { STATUS_CODE, WARNING } = require('../configs/constants');
 const asyncHandler = require('./../middlewares/async-handler');
 const Movie = require('./../models/Movie');
 
@@ -11,7 +11,7 @@ exports.getMovies = asyncHandler(async (req, res, next) => {
 
     // Response
     res.status(STATUS_CODE.SUCCESS)
-        .json(new Response("Get movies successful!", movies));
+        .json(new Response(WARNING.GET_MOVIES_SUCCESS, movies));
 });
 
 // @DESC    SHARE VIDEO YOUTUBE
@@ -28,5 +28,5 @@ exports.share = asyncHandler(async (req, res, next) => {
 
     // Response
     res.status(STATUS_CODE.SUCCESS)
-        .json(new Response("Share successful!", {}));
+        .json(new Response(WARNING.SHARE_SUCCESS, {}));
 });

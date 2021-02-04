@@ -6,7 +6,6 @@ const app = require('./../app');
 
 let mongo = null;
 
-global.signUpEndPoint = ROUTES.AUTH.PREFIX + ROUTES.AUTH.SIGN_UP;
 global.loginEndPoint = ROUTES.AUTH.PREFIX + ROUTES.AUTH.LOGIN;
 global.shareEndPoint = ROUTES.MOVIE.PREFIX + ROUTES.MOVIE.SHARE;
 
@@ -41,14 +40,6 @@ afterAll(async () => {
 global.logIn = async () => {
     const username = "yasuo123";
     const password = "123123";
-
-    await request(app)
-        .post(global.signUpEndPoint)
-        .send({
-            username,
-            password
-        })
-        .expect(201);
 
     const response = await request(app)
         .post(global.loginEndPoint)
