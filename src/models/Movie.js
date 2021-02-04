@@ -6,6 +6,19 @@ const MovieSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    title: {
+        type: String,
+        required: true,
+    },
+    likeCount: {
+        type: String,
+        required: true
+    },
+    dislikeCount: {
+        type: String,
+        required: true
+    },
+    description: String,
     user: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: COLLECTION_NAME.USER,

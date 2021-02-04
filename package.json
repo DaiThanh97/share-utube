@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/DaiThanh97/share-utube-videos#readme",
   "dependencies": {
+    "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",

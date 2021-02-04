@@ -8,7 +8,7 @@ exports.STATUS_CODE = {
     INTERNAL_ERROR: 500
 };
 
-const PREFIX = '/api';
+const PREFIX = process.env.PREFIX;
 exports.ROUTES = {
     AUTH: {
         PREFIX: PREFIX + '/auth',
@@ -33,6 +33,7 @@ exports.WARNING = {
     USERNAME_SPECIAL_STRICT: 'Username must not have special characters!',
     PASSWORD_LENGTH_STRICT: 'Password must between 6 and 15 characters!',
     URL_INVALID: 'Invalid youtube url!',
+    SOMETHING_WRONG: 'Something went wrong!'
 }
 
 exports.COLLECTION_NAME = {
