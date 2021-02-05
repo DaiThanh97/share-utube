@@ -3,7 +3,7 @@ const app = require('./../../app');
 
 const { logIn, shareEndPoint, movieEndPoint } = global;
 const token = logIn();
-const urlYoutube = 'https://www.youtube.com/watch?v=HOCxJ0-KKos';
+const urlYoutube = 'https://www.youtube.com/watch?v=hjGRDg5a0xk';
 
 describe('Get Movies Feature', () => {
     it(`Has route handler for ${movieEndPoint}`, async () => {

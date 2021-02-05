@@ -17,7 +17,6 @@ beforeAll(async () => {
 
     mongo = new MongoMemoryServer();
     const mongoURI = await mongo.getUri();
-    console.log("URIII: ", mongoURI);
 
     await mongoose.connect(mongoURI, {
         useNewUrlParser: true,
