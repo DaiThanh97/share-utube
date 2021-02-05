@@ -4,7 +4,7 @@ const { WARNING } = require('./../configs/constants');
 const validate = {
     share: [
         check('url')
-            .matches(/^(http(s)?:\/\/)?((w){3}.)?youtu(be|.be)?(\.com)?\/.+/gm)
+            .matches(/^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})?$/)
             .withMessage(WARNING.URL_INVALID)
             .trim()
     ]

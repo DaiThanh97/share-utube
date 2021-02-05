@@ -9,11 +9,21 @@ const CustomError = require('../classes/CustomError');
 // @ROUTE   GET /api/video
 // @ACCESS  PUBLIC
 exports.getMovies = asyncHandler(async (req, res, next) => {
-    const movies = await Movie.find().populate('user');
+    const page = +req.query.page || 1;
+    const itemPerPage = +req.query.count || 4;
+
+    const [totalMovie, movies] = await Promise.all([
+        await Movie.estimatedDocumentCount(),
+        await Movie.find()
+            .populate('user')
+            .skip(itemPerPage * (page - 1))
+            .limit(itemPerPage)
+            .sort({ sharedAt: -1 })
+    ]);
 
     // Response
     res.status(STATUS_CODE.SUCCESS)
-        .json(new Response(WARNING.GET_MOVIES_SUCCESS, movies));
+        .json(new Response(WARNING.GET_MOVIES_SUCCESS, { totalMovie, movies }));
 });
 
 // @DESC    SHARE VIDEO YOUTUBE

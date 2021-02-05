@@ -19,6 +19,10 @@ const MovieSchema = new mongoose.Schema({
         required: true
     },
     description: String,
+    sharedAt: {
+        type: Date,
+        default: Date.now
+    },
     user: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: COLLECTION_NAME.USER,
