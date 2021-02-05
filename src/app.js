@@ -2,6 +2,7 @@ const path = require('path');
 
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 
 const authRouter = require('./routes/auth.route');
 const movieRouter = require('./routes/movie.route');
@@ -11,6 +12,7 @@ const { STATUS_CODE, ROUTES, WARNING } = require('./configs/constants');
 
 const app = express();
 
+app.use(cors({ origin: 'https://share-utube-client-a52n5.ondigitalocean.app' }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
