@@ -6,6 +6,7 @@ const app = require('./../app');
 
 let mongo = null;
 
+global.movieEndPoint = ROUTES.MOVIE.PREFIX;
 global.loginEndPoint = ROUTES.AUTH.PREFIX + ROUTES.AUTH.LOGIN;
 global.shareEndPoint = ROUTES.MOVIE.PREFIX + ROUTES.MOVIE.SHARE;
 
@@ -16,6 +17,7 @@ beforeAll(async () => {
 
     mongo = new MongoMemoryServer();
     const mongoURI = await mongo.getUri();
+    console.log("URIII: ", mongoURI);
 
     await mongoose.connect(mongoURI, {
         useNewUrlParser: true,

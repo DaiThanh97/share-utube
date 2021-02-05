@@ -8,7 +8,7 @@ exports.STATUS_CODE = {
     INTERNAL_ERROR: 500
 };
 
-const PREFIX = process.env.PREFIX;
+const PREFIX = '/api';
 exports.ROUTES = {
     AUTH: {
         PREFIX: PREFIX + '/auth',

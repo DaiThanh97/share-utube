@@ -1,9 +1,19 @@
 const request = require('supertest');
 const app = require('./../../app');
 
-const { logIn, shareEndPoint } = global;
+const { logIn, shareEndPoint, movieEndPoint } = global;
 const token = logIn();
-const urlYoutube = 'https://www.youtube.com/watch?v=HOCxJ0-KKos&t=1629s';
+const urlYoutube = 'https://www.youtube.com/watch?v=HOCxJ0-KKos';
+
+describe('Get Movies Feature', () => {
+    it(`Has route handler for ${movieEndPoint}`, async () => {
+        const response = await request(app)
+            .get(`${movieEndPoint}?page=1&count=4`)
+            .send({});
+
+        expect(response.status).not.toBe(404);
+    });
+});
 
 describe('Share Feature', () => {
     it(`Has route handler for ${shareEndPoint}`, async () => {
