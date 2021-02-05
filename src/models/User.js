@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { COLLECTION_NAME } = require('./../configs/constants');
 
 const UserSchema = new mongoose.Schema({
     username: {
@@ -10,7 +11,6 @@ const UserSchema = new mongoose.Schema({
         required: true
     }
 }, {
-    timestamps: true,
     toJSON: {
         transform(doc, ret) {
             ret.id = ret._id;
@@ -21,4 +21,4 @@ const UserSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model("User", UserSchema);
+module.exports = mongoose.model(COLLECTION_NAME.USER, UserSchema);

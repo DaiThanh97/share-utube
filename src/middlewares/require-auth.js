@@ -1,4 +1,4 @@
-const { STATUS_CODE } = require('../configs/constants');
+const { STATUS_CODE, WARNING } = require('../configs/constants');
 const jwtService = require('./../services/jwt.service');
 
 module.exports = (req, res, next) => {
@@ -17,7 +17,7 @@ module.exports = (req, res, next) => {
         req.user = payload;
         next();
     } catch (err) {
-        err.message = "Not Authenticated!";
+        err.message = WARNING.NOT_AUTHENTICATED;
         err.status = STATUS_CODE.UNAUTHENTICATED;
         next(err);
     }
