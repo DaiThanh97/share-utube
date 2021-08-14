@@ -13,6 +13,8 @@ exports.logIn = asyncHandler(async (req, res, next) => {
     const { username, password } = req.body;
     // Check existed user with username
     let user = await User.findOne({ username });
+    console.log("USER: ", user);
+
     if (!user) {
         // Sign Up User
         // Hash password
